@@ -1,20 +1,26 @@
 # 26. Дано число. Составить список чисел Фибоначчи, 
 # в том числе для отрицательных индексов
 
-n = int(input('Введите число: '))
+def Fibonacci(n):
+    if n in [1, 2]:                       
+        return 1
+    else:
+        return Fibonacci(n-1) + Fibonacci(n-2)
 
-def get_fibonacci(n):
-    fibo_nums = []
-    a, b = 1, 1
-    for i in range(n-1):
-        fibo_nums.append(a)
-        a, b = b, a + b
-    a, b = 0, 1
-    for i in range (n):
-        fibo_nums.insert(0, a)
-        a, b = b, a - b
-    return fibo_nums
+def NegaFibonacci(n):
+    if n == 1:                       
+        return 1
+    elif n == 2:                       
+        return -1
+    else:
+        num1, num2 = 1, -1
+        for i in range(2, n):
+            num1, num2 = num2, num1 - num2
+        return num2
 
-fibo_nums = get_fibonacci(n)
-print(get_fibonacci(n))
-print(fibo_nums.index(0))
+list = [0]
+userNumber = int(input('Введите число: '))
+for e in range(1, userNumber + 1):
+    list.append(Fibonacci(e))
+    list.insert(0, NegaFibonacci(e))
+print(list)
